@@ -1,0 +1,11 @@
+goos: linux
+goarch: amd64
+pkg: github.com/felixge/advent-2021/day-1-1
+cpu: Intel(R) Xeon(R) CPU E5-1650 v4 @ 3.60GHz
+BenchmarkAnswer-12    	 9677737	       112.7 ns/op
+BenchmarkAnswer-12    	10066518	       111.1 ns/op
+BenchmarkAnswer-12    	 9783100	       109.6 ns/op
+BenchmarkAnswer-12    	10931744	       111.8 ns/op
+BenchmarkAnswer-12    	 9788264	       111.8 ns/op
+PASS
+ok  	github.com/felixge/advent-2021/day-1-1	6.226s
