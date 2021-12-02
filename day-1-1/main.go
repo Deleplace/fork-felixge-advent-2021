@@ -28,26 +28,17 @@ func Answer(input string) (int, error) {
 	var prev int64 = -9999
 	var increases int = -1
 
-	// Read 1st char of 1st number
-	c := input[0]
-	val := int64(c)
-mainloop:
-	for p, N := 1, len(input); p < N; p++ {
+	val := int64(0)
+	for p, N := 0, len(input); p < N; p++ {
 		c := input[p]
 		if c != '\n' {
-			val = (val << 10) + int64(c)
+			val = (val << 8) + int64(c)
 		} else {
 			if val > prev {
 				increases++
 			}
 			prev = val
-			// Read 1st char of next number
-			p++
-			if p >= N {
-				break mainloop
-			}
-			c = input[p]
-			val = int64(c)
+			val = 0
 		}
 	}
 	if val > prev {
