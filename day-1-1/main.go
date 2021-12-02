@@ -25,23 +25,19 @@ func run() error {
 }
 
 func Answer(input string) (int, error) {
-	var prev int16 = -9999
+	var prev int64 = -9999
 	var increases int = -1
 
 	// Read 1st char of 1st number
 	c := input[0]
-	val := int16(c - '0')
+	val := int64(c - '0')
 mainloop:
 	for p, N := 1, len(input); p < N; p++ {
 		c := input[p]
-		//fmt.Printf("input[%d] is %c (%d)\n", p, c, c)
-		switch {
-		case c == '\n':
+		if c == '\n' {
 			if val > prev {
-				//fmt.Println("Found", val, ">", prev, " !!!!!")
 				increases++
 			}
-			//fmt.Println(prev, val, increases, " p =", p)
 			prev = val
 			// Read 1st char of next number
 			p++
@@ -49,11 +45,9 @@ mainloop:
 				break mainloop
 			}
 			c := input[p]
-			val = int16(c - '0')
-		case c >= '0' && c <= '9':
-			val = val*10 + int16(c-'0')
-		default:
-			panic("A")
+			val = int64(c - '0')
+		} else {
+			val = val*10 + int64(c-'0')
 		}
 	}
 	if val > prev {
