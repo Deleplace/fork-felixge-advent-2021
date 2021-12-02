@@ -30,11 +30,13 @@ func Answer(input string) (int, error) {
 
 	// Read 1st char of 1st number
 	c := input[0]
-	val := int64(c - '0')
+	val := int64(c)
 mainloop:
 	for p, N := 1, len(input); p < N; p++ {
 		c := input[p]
-		if c == '\n' {
+		if c != '\n' {
+			val = (val << 10) + int64(c)
+		} else {
 			if val > prev {
 				increases++
 			}
@@ -44,10 +46,8 @@ mainloop:
 			if p >= N {
 				break mainloop
 			}
-			c := input[p]
-			val = int64(c - '0')
-		} else {
-			val = val*10 + int64(c-'0')
+			c = input[p]
+			val = int64(c)
 		}
 	}
 	if val > prev {
